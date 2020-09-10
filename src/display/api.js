@@ -194,6 +194,10 @@ function setPDFNetworkStreamFactory(pdfNetworkStreamFactory) {
  */
 
 /**
+ * @typedef {Object} PDFDocumentXFA
+ */
+
+/**
  * This is the main entry point for loading a PDF and interacting with it.
  *
  * NOTE: If a URL is used to fetch the PDF data a standard Fetch API call (or
@@ -830,6 +834,15 @@ class PDFDocumentProxy {
    */
   getStats() {
     return this._transport.getStats();
+  }
+
+  /**
+   * @returns {Promise<PDFDocumentXFA>} A promise this is resolved with
+   *   the XFA root structure of the document.
+   *   {@link PDFDocumentXFA}).
+   */
+  getXFA() {
+    return this._transport.getXFA();
   }
 
   /**
@@ -2624,7 +2637,9 @@ class WorkerTransport {
   getStats() {
     return this.messageHandler.sendWithPromise("GetStats", null);
   }
-
+  getXFA() {
+    return this.messageHandler.sendWithPromise("GetXFA", null);
+  }
   startCleanup() {
     return this.messageHandler.sendWithPromise("Cleanup", null).then(() => {
       for (let i = 0, ii = this.pageCache.length; i < ii; i++) {
