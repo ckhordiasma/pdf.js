@@ -1677,7 +1677,7 @@ function packageBowerJson() {
 
   var DIST_NAME = "pdfjs-dist";
   var DIST_DESCRIPTION = "Generic build of Mozilla's PDF.js library, with additional access to XFA information through API";
-  var DIST_KEYWORDS = ["Mozilla", "pdf", "pdf.js", "xref", "xref"];
+  var DIST_KEYWORDS = ["Mozilla", "pdf", "pdf.js", "xref", "xfa"];
   var DIST_HOMEPAGE = "http://github.com/ckhordiasma/pdf.js/";
   var DIST_BUGS_URL = "https://github.com/ckhordiasma/pdf.js/issues";
   var DIST_LICENSE = "Apache-2.0";
