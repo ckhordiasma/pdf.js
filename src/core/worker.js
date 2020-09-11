@@ -505,23 +505,23 @@ class WorkerMessageHandler {
       });
     });
 
-    handler.on("GetXFA", function wphSetupXFA(data){
-      const xref = pdfManager.pdfDocument.xref;
-      const xfa = pdfManager.pdfDocument.xfa;
-      let xfaDict = [];
-      for (let i = 0; i < xfa.length;i++){
-          if(i % 2 == 0 ){                
-              const bytes = xref.fetch(xfa[i+1]).getBytes()
-
-              xfaDict[xfa[i]] = new TextDecoder().decode(bytes)
-              //console.log(new TextDecoder().decode(bytes))
-          }
-      }
-      return xfaDict;
-    });
-
     handler.on("GetStats", function wphSetupGetStats(data) {
       return pdfManager.ensureXRef("stats");
+    });
+
+    handler.on("GetXFA", function wphSetupXFA(data){
+      const xref = pdfManager.pdfDocument.xref;
+
+      return pdfManager.ensureDoc("xfa").then(function (xfa){
+        let xfaDict = [];
+        for (let i = 0; i < xfa.length;i++){
+            if(i % 2 == 0 ){                
+                const bytes = xref.fetch(xfa[i+1]).getBytes()
+                xfaDict[xfa[i]] = new TextDecoder().decode(bytes)
+            }
+        }
+        return xfaDict;
+      })
     });
 
     handler.on("GetAnnotations", function ({ pageIndex, intent }) {

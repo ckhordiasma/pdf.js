@@ -7,3 +7,5 @@ Makefile
 node_modules/
 examples/node/svgdump/
 examples/node/pdf2png/*.png
+test/unit/af1206-e.pdf
+test/unit/xfa_test.html

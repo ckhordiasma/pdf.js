@@ -63,14 +63,14 @@ var JSDOC_BUILD_DIR = BUILD_DIR + "jsdoc/";
 var GH_PAGES_DIR = BUILD_DIR + "gh-pages/";
 var SRC_DIR = "src/";
 var LIB_DIR = BUILD_DIR + "lib/";
-var DIST_DIR = BUILD_DIR + "dist/";
+var DIST_DIR = BUILD_DIR + "dist-XFA/";
 var TYPES_DIR = BUILD_DIR + "types/";
 var TYPESTEST_DIR = BUILD_DIR + "typestest/";
 var COMMON_WEB_FILES = ["web/images/*.{png,svg,gif,cur}", "web/debugger.js"];
 var MOZCENTRAL_DIFF_FILE = "mozcentral.diff";
 
-var REPO = "git@github.com:ckhordiasma/pdf.js.git";
-var DIST_REPO_URL = "https://github.com/ckhordiasma/pdfjs-dist";
+var REPO = "git@github.com:mozilla/pdf.js.git";
+var DIST_REPO_URL = "https://github.com/ckhordiasma/pdfjs-xfa-dist";
 
 var builder = require("./external/builder/builder.js");
 
@@ -307,7 +307,7 @@ function replaceJSRootName(amdName, jsName) {
 }
 
 function createMainBundle(defines) {
-  var mainAMDName = "pdfjs-dist/build/pdf";
+  var mainAMDName = "pdfjs-xfa-dist/build/pdf";
   var mainOutputName = "pdf.js";
 
   var mainFileConfig = createWebpackConfig(defines, {
@@ -324,7 +324,7 @@ function createMainBundle(defines) {
 }
 
 function createWorkerBundle(defines) {
-  var workerAMDName = "pdfjs-dist/build/pdf.worker";
+  var workerAMDName = "pdfjs-xfa-dist/build/pdf.worker";
   var workerOutputName = "pdf.worker.js";
 
   var workerFileConfig = createWebpackConfig(defines, {
@@ -350,7 +350,7 @@ function createWebBundle(defines) {
 }
 
 function createComponentsBundle(defines) {
-  var componentsAMDName = "pdfjs-dist/web/pdf_viewer";
+  var componentsAMDName = "pdfjs-xfa-dist/web/pdf_viewer";
   var componentsOutputName = "pdf_viewer.js";
 
   var componentsFileConfig = createWebpackConfig(defines, {
@@ -367,7 +367,7 @@ function createComponentsBundle(defines) {
 }
 
 function createImageDecodersBundle(defines) {
-  var imageDecodersAMDName = "pdfjs-dist/image_decoders/pdf.image_decoders";
+  var imageDecodersAMDName = "pdfjs-xfa-dist/image_decoders/pdf.image_decoders";
   var imageDecodersOutputName = "pdf.image_decoders.js";
 
   var componentsFileConfig = createWebpackConfig(defines, {
@@ -1675,11 +1675,11 @@ gulp.task(
 function packageBowerJson() {
   var VERSION = getVersionJSON().version;
 
-  var DIST_NAME = "pdfjs-dist";
-  var DIST_DESCRIPTION = "Generic build of Mozilla's PDF.js library, with additional access to XFA information through API";
-  var DIST_KEYWORDS = ["Mozilla", "pdf", "pdf.js", "xref", "xref"];
-  var DIST_HOMEPAGE = "http://github.com/ckhordiasma/pdf.js/";
-  var DIST_BUGS_URL = "https://github.com/ckhordiasma/pdf.js/issues";
+  var DIST_NAME = "pdfjs-xfa-dist";
+  var DIST_DESCRIPTION = "Generic build of Mozilla's PDF.js library, with XFA export added to API.";
+  var DIST_KEYWORDS = ["Mozilla", "pdf", "pdf.js",'XFA', 'xref'];
+  var DIST_HOMEPAGE = "https://github.com/ckhordiasma/pdfjs-xfa-dist";
+  var DIST_BUGS_URL = "https://github.com/ckhordiasma/pdfjs-xfa-dist/pulls";
   var DIST_LICENSE = "Apache-2.0";
 
   var npmManifest = {
