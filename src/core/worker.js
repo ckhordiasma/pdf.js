@@ -511,8 +511,8 @@ class WorkerMessageHandler {
 
     handler.on("GetXFA", function wphSetupXFA(data){
       const xref = pdfManager.pdfDocument.xref;
-
-      return pdfManager.ensureDoc("xfa").then(function (xfa){
+      return pdfManager.ensureCatalog("acroForm").then(function (acroForm){
+        let xfa = acroForm.get('XFA');
         let xfaDict = [];
         for (let i = 0; i < xfa.length;i++){
             if(i % 2 == 0 ){                
